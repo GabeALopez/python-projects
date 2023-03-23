@@ -8,8 +8,12 @@ tag2 = 0
 
 for x in list3:
     if(x == 19):
+        if(count1 == 2):
+            continue 
         count1 +=1 
     elif(x == 5):
+        if(count2 == 3):
+            continue
         count2 += 1
 
 
