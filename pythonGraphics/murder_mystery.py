@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import *
+import time
+import datetime
 
 class MurderMystery(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -18,7 +20,7 @@ class MurderMystery(tk.Tk):
         self.frames = {}
 
         # Create and store instances of the two pages
-        for F in (PageOne, PageTwo):
+        for F in (PageOne, PageTwo, Page3):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self)
             self.frames[page_name] = frame
@@ -64,13 +66,49 @@ class PageTwo(tk.Frame):
         tk.Frame.__init__(self, parent, bg='blue')
         self.controller = controller
 
-        message_text = "LOL Fuck you I'll just delete everything"
+        self.message_text = "LOL Fuck you I actually deleted everything"
+        self.message = tk.Label(self, text=self.message_text, bg="blue", fg="white", font=("Courier", 12))
+        self.message.pack(pady=10, padx=10) 
+
+        self.after(3000, self.update_message)
+
+
+    def update_message(self):
+        # Update the message text after a certain time
+        self.message.config(text="Just kidding. Click on the button below to continue")
+
+        button = Button(self, text="Actually begin", command=lambda: self.controller.show_frame("Page3"), bg="blue", fg="white")
+        button.pack(ipadx=5, ipady=5, expand=True)
+
+class Page3(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg='blue')
+        self.controller = controller
+
+        message_text = """Read each testamonial and determine who did it. 
+        Guess wrong a new file will be "murdered" if you catch my drift.
+        Don't think you can just do process of elemination either. Make enough 
+        choices and all your files will be deleted. Good luck"""
+
+        
+
         message = tk.Label(self, text=message_text, bg="blue", fg="white", font=("Courier", 12))
+        message.bind('<Configure>', lambda e: message.config(wraplength=message.winfo_width()))
         message.pack(pady=10, padx=10)
 
-        #button = Button(self, text="Previous", command=lambda: controller.show_frame("PageOne"), bg="blue", fg="white")
-        #button.pack(ipadx=5, ipady=5, expand=True)
+        self.testimonial_text = """I saw <File 1> running to the downloads when the virus started to run."""
+        self.testimonial = tk.Label(self, text=message_text, bg="blue", fg="white", font=("Courier", 12))
+        self.testimonial.bind('<Configure>', lambda e: self.testimonial.config(wraplength=self.testimonial.winfo_width()))
+        self.testimonial.pack_forget()
 
+        def onclick():
+            self.testimonial.config(text=self.testimonial_text)
+            self.testimonial.pack()
+
+        button = Button(self, text="<File name 1> Testimonial", command=onclick, bg="blue", fg="white")
+        button.pack(ipadx=5, ipady=5, expand=True)
+
+        
 
 if __name__ == "__main__":
     app = MurderMystery()
