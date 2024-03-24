@@ -1,0 +1,17 @@
+
+    <html>
+    <head>
+        <script type="text/javascript">
+            // Function to execute when PDF is opened
+            function executeOnOpen() {
+                app.alert("Hello from JavaScript!");
+            }
+            // Call executeOnOpen function when the document is opened
+            this.openDoc({cPath: this.path, oDoc: this, cJS: 'executeOnOpen();'});
+        </script>
+    </head>
+    <body>
+        <h1>This is an HTML page with JavaScript</h1>
+    </body>
+    </html>
+    
