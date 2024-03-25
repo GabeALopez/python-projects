@@ -7,7 +7,7 @@ class MurderMystery(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.title("A Desktop Mystery")
-        self.geometry("600x400+50+50")
+        self.geometry("600x600+50+50")
         self.resizable(False, False)
         self.configure(bg='blue')
 
@@ -70,7 +70,7 @@ class PageTwo(tk.Frame):
         self.message = tk.Label(self, text=self.message_text, bg="blue", fg="white", font=("Courier", 12))
         self.message.pack(pady=10, padx=10) 
 
-        self.after(3000, self.update_message)
+        self.after(5000, self.update_message)
 
 
     def update_message(self):
@@ -85,9 +85,9 @@ class Page3(tk.Frame):
         tk.Frame.__init__(self, parent, bg='blue')
         self.controller = controller
 
-        message_text = """Read each testamonial and determine who did it. 
+        message_text = """Read each testimonial and determine who did it. 
         Guess wrong a new file will be "murdered" if you catch my drift.
-        Don't think you can just do process of elemination either. Make enough 
+        Don't think you can just do process of elimination either. Make enough 
         choices and all your files will be deleted. Good luck"""
 
         
@@ -101,12 +101,15 @@ class Page3(tk.Frame):
         self.testimonial.bind('<Configure>', lambda e: self.testimonial.config(wraplength=self.testimonial.winfo_width()))
         self.testimonial.pack_forget()
 
-        def onclick():
+        def onclick(self):
             self.testimonial.config(text=self.testimonial_text)
             self.testimonial.pack()
 
         button = Button(self, text="<File name 1> Testimonial", command=onclick, bg="blue", fg="white")
+        button.grid(row=1, column=0, pady=10)
         button.pack(ipadx=5, ipady=5, expand=True)
+
+        
 
         
 
