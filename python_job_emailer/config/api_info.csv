@@ -1,4 +1,4 @@
 website,url,api_key,header
-asdf,asdf,asdf,asdf
-1234,1234,1234,asdf
-qwer,qwer,qwer,asdf
+asdf,https://google.com,,asdf
+1234,https://google.com,,asdf
+qwer,https://google.com,,asdf
