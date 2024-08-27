@@ -1,4 +1,5 @@
 import requests
+import json
 
 class APIClient:
 
@@ -18,7 +19,8 @@ class APIClient:
             response = requests.get(url)
 
         if response.status_code == 200:
-            print(response.text)
+            json_object = response.json()
+            print(json_object)
         else:
             response.raise_for_status()
 
