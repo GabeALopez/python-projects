@@ -10,11 +10,15 @@ class APIClient:
     def get_data(self):
 
         url = f"{self.url}"
-        headers = f"{self.header}: {self.api_key}"
-        response = requests.get(url, headers=headers) 
+
+        if isinstance(self.api_key, str):
+            headers = f"{self.header}: {self.api_key}"
+            response = requests.get(url, headers=headers) 
+        else:
+            response = requests.get(url)
 
         if response.status_code == 200:
-            print(response.json)
+            print(response.text)
         else:
             response.raise_for_status()
 
