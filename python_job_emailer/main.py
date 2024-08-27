@@ -1,6 +1,13 @@
 from api.api_client import APIClient
 import pandas as pd
 
+def process_data(key, value_data):
+    match key:
+            case 'devitjobs':
+                print("")
+            case _:
+                print("Nothing")
+
 def main():
     api_dict = {}
 
@@ -9,11 +16,14 @@ def main():
     for row in df.itertuples(index=False):
         api_dict[row.website] = APIClient(row.url, row.api_key, row.header)
 
-    for value in api_dict.values():
-        value.get_data()
-        print("")
+    for key, value in api_dict.items():
+        value_data = value.get_data()
+        process_data(key, value_data)
 
-    #api_dict['asdf'].get_data()
+        
+
+        
+
     print("")
 
 if __name__ == "__main__":
