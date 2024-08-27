@@ -9,14 +9,12 @@ def main():
     for row in df.itertuples(index=False):
         api_dict[row.website] = APIClient(row.url, row.api_key, row.header)
 
-    print(api_dict)
+    for value in api_dict.values():
+        value.get_data()
+        print("")
 
-    
-
-    
-
-
-
+    #api_dict['asdf'].get_data()
+    print("")
 
 if __name__ == "__main__":
     main()
