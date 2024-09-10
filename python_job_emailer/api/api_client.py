@@ -20,7 +20,7 @@ class APIClient:
 
         if response.status_code == 200:
             json_object = response.json()
-            print(json_object)
+            return json_object
         else:
             response.raise_for_status()
 
