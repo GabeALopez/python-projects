@@ -1,0 +1,1 @@
+Files here moved here to this new repo for better management: https://github.com/GabeALopez/python-job-emailer
